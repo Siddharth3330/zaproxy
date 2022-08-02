@@ -111,6 +111,7 @@ public class OptionsViewPanel extends AbstractParamPanel {
         }
     }
 
+    private static int s = 1;
     private JPanel panelMisc = null;
     private JScrollPane mainScrollPane;
 
@@ -144,6 +145,8 @@ public class OptionsViewPanel extends AbstractParamPanel {
     private JLabel outputTabTimeStampExampleLabel = null;
     private JLabel showSplashScreenLabel = null;
     private JLabel lookAndFeelLabel = null;
+    private JLabel scaleIconLabel = null;
+
     private Map<FontUtils.FontType, JLabel> fontLabels = new EnumMap<>(FontUtils.FontType.class);
     private Map<FontUtils.FontType, ZapNumberSpinner> fontSizes =
             new EnumMap<>(FontUtils.FontType.class);
@@ -418,6 +421,15 @@ public class OptionsViewPanel extends AbstractParamPanel {
                     LayoutHelper.getGBC(1, row, 1, 1.0D, new java.awt.Insets(2, 2, 2, 2)));
 
             row++;
+            JLabel scaleIconLabel =
+                    new JLabel(Constant.messages.getString("view.options.label.icons"));
+            scaleIconLabel.setLabelFor(getIconSize(s));
+            panelMisc.add(scaleIconLabel,
+                    LayoutHelper.getGBC(0, row, 1, 1.0D, new java.awt.Insets(2, 2, 2, 2)));
+            panelMisc.add(getIconSize(s),
+                    LayoutHelper.getGBC(1, row, 1, 1.0D, new java.awt.Insets(2, 2, 2, 2)));
+
+            row++;
             lookAndFeelLabel.setLabelFor(getLookAndFeelSelect());
             panelMisc.add(
                     lookAndFeelLabel,
@@ -621,6 +633,16 @@ public class OptionsViewPanel extends AbstractParamPanel {
             fontSizes.put(fontType, initFontSize(fontType));
         }
         return fontSizes.get(fontType);
+    }
+
+    private static ZapNumberSpinner getIconSize(int s){
+        ZapNumberSpinner size = new ZapNumberSpinner();
+        size.setValue(s);
+        return size;
+    }
+
+    public static ZapNumberSpinner getIconSize(){
+        return getIconSize(s);
     }
 
     private void setExampleFont(FontUtils.FontType fontType) {

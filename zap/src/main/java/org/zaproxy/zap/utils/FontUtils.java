@@ -41,7 +41,7 @@ public class FontUtils {
 
     public static enum FontType {
         general,
-        workPanels
+        workPanels,
     }
 
     private static float scale = -1;

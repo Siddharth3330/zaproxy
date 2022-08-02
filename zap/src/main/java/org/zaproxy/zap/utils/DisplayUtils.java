@@ -36,6 +36,8 @@ import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 import javax.swing.LookAndFeel;
 import javax.swing.UIManager;
+
+import org.parosproxy.paros.extension.option.OptionsViewPanel;
 import org.parosproxy.paros.model.Model;
 
 public class DisplayUtils {
@@ -78,8 +80,8 @@ public class DisplayUtils {
                 (icon)
                         .getImage()
                         .getScaledInstance(
-                                (int) (icon.getIconWidth() * FontUtils.getScale()),
-                                (int) (icon.getIconHeight() * FontUtils.getScale()),
+                                 (icon.getIconWidth() * OptionsViewPanel.getIconSize().getValue()), //FontUtils.getScale()
+                                 (icon.getIconHeight() * OptionsViewPanel.getIconSize().getValue()), //FontUtils.getScale()
                                 Image.SCALE_SMOOTH));
     }
 
